@@ -149,7 +149,7 @@ namespace Python.Runtime
                     Runtime.PyDict_SetItemString(module_globals, "__builtins__", builtins);
 
                     var assembly = Assembly.GetExecutingAssembly();
-                    using (Stream stream = assembly.GetManifestResourceStream("clr.py"))
+                    using (Stream stream = assembly.GetManifestResourceStream("Python.Runtime.resources.clr.py"))
                     using (StreamReader reader = new StreamReader(stream))
                     {
                         // add the contents of clr.py to the module
