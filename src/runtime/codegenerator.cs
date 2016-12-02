@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.Loader;
+using System.Reflection.Emit;
 
 namespace Python.Runtime
 {
@@ -25,7 +27,8 @@ namespace Python.Runtime
             aname.Name = "__CodeGenerator_Assembly";
             AssemblyBuilderAccess aa = AssemblyBuilderAccess.Run;
 
-            aBuilder = Thread.GetDomain().DefineDynamicAssembly(aname, aa);
+            aBuilder = AssemblyBuilder.DefineDynamicAssembly(aname,aa);
+            AppDomain.CurrentDomain.DefineDynamicAssembly(aname, aa);
             mBuilder = aBuilder.DefineDynamicModule("__CodeGenerator_Module");
         }
 

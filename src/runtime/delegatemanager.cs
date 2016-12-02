@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Collections;
 using System.Reflection;
 using System.Reflection.Emit;
+using ReflectionBridge.Extensions;
 
 namespace Python.Runtime
 {
@@ -130,7 +131,7 @@ namespace Python.Runtime
                 il.Emit(OpCodes.Ldloc_0);
                 il.Emit(OpCodes.Ldarg_S, (byte)(c + 1));
 
-                if (t.IsValueType)
+                if (t.IsValueType())
                 {
                     il.Emit(OpCodes.Box, t);
                 }
@@ -147,14 +148,14 @@ namespace Python.Runtime
             {
                 il.Emit(OpCodes.Pop);
             }
-            else if (method.ReturnType.IsValueType)
+            else if (method.ReturnType.IsValueType())
             {
                 il.Emit(OpCodes.Unbox_Any, method.ReturnType);
             }
 
             il.Emit(OpCodes.Ret);
 
-            Type disp = tb.CreateType();
+            Type disp = tb.CreateTypeInfo().AsType();
             cache[dtype] = disp;
             return disp;
         }

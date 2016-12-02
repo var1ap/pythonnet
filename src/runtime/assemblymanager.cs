@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.Loader;
 using System.Threading;
 
 namespace Python.Runtime
@@ -19,7 +20,7 @@ namespace Python.Runtime
         // therefore this should be a ConcurrentDictionary
         static ConcurrentDictionary<string, ConcurrentDictionary<Assembly, string>> namespaces;
         //static Dictionary<string, Dictionary<string, string>> generics;
-        static AssemblyLoadEventHandler lhandler;
+        //static AssemblyLoadEventHandler lhandler;
         static ResolveEventHandler rhandler;
         // updated only under GIL?
         static Dictionary<string, int> probed;
@@ -48,8 +49,8 @@ namespace Python.Runtime
 
             AppDomain domain = AppDomain.CurrentDomain;
 
-            lhandler = new AssemblyLoadEventHandler(AssemblyLoadHandler);
-            domain.AssemblyLoad += lhandler;
+            //lhandler = new AssemblyLoadEventHandler(AssemblyLoadHandler);
+            //domain.AssemblyLoad += lhandler;
 
             rhandler = new ResolveEventHandler(ResolveHandler);
             domain.AssemblyResolve += rhandler;
@@ -77,7 +78,7 @@ namespace Python.Runtime
         internal static void Shutdown()
         {
             AppDomain domain = AppDomain.CurrentDomain;
-            domain.AssemblyLoad -= lhandler;
+            //domain.AssemblyLoad -= lhandler;
             domain.AssemblyResolve -= rhandler;
         }
 
@@ -90,12 +91,12 @@ namespace Python.Runtime
         // Python runtime is initialized.
         //===================================================================
 
-        static void AssemblyLoadHandler(Object ob, AssemblyLoadEventArgs args)
-        {
-            Assembly assembly = args.LoadedAssembly;
-            assemblies.Add(assembly);
-            ScanAssembly(assembly);
-        }
+        //static void AssemblyLoadHandler(Object ob, AssemblyLoadEventArgs args)
+        //{
+        //    Assembly assembly = args.LoadedAssembly;
+        //    assemblies.Add(assembly);
+        //    ScanAssembly(assembly);
+        //}
 
 
         //===================================================================
@@ -204,7 +205,7 @@ namespace Python.Runtime
             Assembly assembly = null;
             try
             {
-                assembly = Assembly.Load(name);
+                assembly = Assembly.Load(new AssemblyName(name));
             }
             catch (System.Exception e)
             {
@@ -228,7 +229,7 @@ namespace Python.Runtime
             {
                 try
                 {
-                    assembly = Assembly.LoadFrom(path);
+                    assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(path); 
                 }
                 catch
                 {
@@ -253,7 +254,7 @@ namespace Python.Runtime
                 {
                     try
                     {
-                        assembly = Assembly.LoadFrom(name);
+                        assembly = AssemblyLoadContext.Default.LoadFromAssemblyPath(name);
                     }
                     catch
                     {
@@ -373,7 +374,7 @@ namespace Python.Runtime
                     namespaces[ns].TryAdd(assembly, String.Empty);
                 }
 
-                if (ns != null && t.IsGenericTypeDefinition)
+                if (ns != null && t.GetTypeInfo().IsGenericTypeDefinition)
                 {
                     GenericUtil.Register(t);
                 }

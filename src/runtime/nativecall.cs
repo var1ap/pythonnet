@@ -44,7 +44,7 @@ namespace Python.Runtime
             aname.Name = "e__NativeCall_Assembly";
             AssemblyBuilderAccess aa = AssemblyBuilderAccess.Run;
 
-            aBuilder = Thread.GetDomain().DefineDynamicAssembly(aname, aa);
+            aBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(aname, aa);
             mBuilder = aBuilder.DefineDynamicModule("e__NativeCall_Module");
 
             TypeAttributes ta = TypeAttributes.Public;
@@ -61,7 +61,7 @@ namespace Python.Runtime
                 GenerateThunk(tBuilder, method);
             }
 
-            Type theType = tBuilder.CreateType();
+            Type theType = tBuilder.CreateTypeInfo().AsType();
 
             Impl = (INativeCall)Activator.CreateInstance(theType);
         }
@@ -110,10 +110,11 @@ namespace Python.Runtime
 
             il.Emit(OpCodes.Ldarg_1);
 
+            //add null 5th arg
             il.EmitCalli(OpCodes.Calli,
                 CallingConvention.Cdecl,
                 method.ReturnType,
-                nargs
+                nargs,null
                 );
 
             il.Emit(OpCodes.Ret);

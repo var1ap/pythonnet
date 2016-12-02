@@ -3,8 +3,10 @@ using System.Runtime.InteropServices;
 using System.Reflection.Emit;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
+using ReflectionBridge.Extensions;
 
 namespace Python.Runtime
 {
@@ -138,9 +140,9 @@ namespace Python.Runtime
             {
                 base_ = Exceptions.Exception;
             }
-            else if (clrType.BaseType != null)
+            else if (clrType.BaseType() != null)
             {
-                ClassBase bc = ClassManager.GetClass(clrType.BaseType);
+                ClassBase bc = ClassManager.GetClass(clrType.BaseType());
                 base_ = bc.pyHandle;
             }
 
@@ -490,7 +492,7 @@ namespace Python.Runtime
                     seen[name] = 1;
                 }
 
-                impl = impl.BaseType;
+                impl = impl.BaseType();
             }
         }
 
@@ -517,7 +519,7 @@ namespace Python.Runtime
                     MethodInfo method = methods[i];
                     if (!addedMethods.Contains(method.Name))
                     {
-                        object[] attrs = method.GetCustomAttributes(marker, false);
+                        object[] attrs = method.GetCustomAttributes(marker, false).ToArray();
                         if (attrs.Length > 0)
                         {
                             string method_name = method.Name;
@@ -529,7 +531,7 @@ namespace Python.Runtime
                         }
                     }
                 }
-                type = type.BaseType;
+                type = type.BaseType();
             }
         }
 

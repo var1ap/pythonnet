@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Reflection;
-using System.Security.Permissions;
 
 namespace Python.Runtime
 {
@@ -15,7 +14,6 @@ namespace Python.Runtime
         MethodInfo getter;
         MethodInfo setter;
 
-        [StrongNameIdentityPermissionAttribute(SecurityAction.Assert)]
         public PropertyObject(PropertyInfo md) : base()
         {
             getter = md.GetGetMethod(true);

@@ -296,7 +296,7 @@ namespace Python.Runtime
                     }
                 }
                 else if ((pynargs > clrnargs) && (clrnargs > 0) &&
-                         Attribute.IsDefined(pi[clrnargs - 1], typeof(ParamArrayAttribute)))
+                         pi[clrnargs - 1].IsDefined(typeof(ParamArrayAttribute)))
                 {
                     // This is a spam(params object[] egg) style method
                     match = true;
@@ -489,11 +489,7 @@ namespace Python.Runtime
 
             try
             {
-                result = binding.info.Invoke(binding.inst,
-                    BindingFlags.Default,
-                    null,
-                    binding.args,
-                    null);
+                result = binding.info.Invoke(binding.inst,binding.args);
             }
             catch (Exception e)
             {

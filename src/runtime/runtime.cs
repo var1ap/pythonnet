@@ -1,6 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using ReflectionBridge.Extensions;
+
 #if (UCS4)
 using System.Text;
 using Mono.Unix;
@@ -13,7 +15,6 @@ using System.Text;
 
 namespace Python.Runtime
 {
-    [SuppressUnmanagedCodeSecurityAttribute()]
     static class NativeMethods
     {
 #if (MONO_LINUX || MONO_OSX)
@@ -339,7 +340,7 @@ namespace Python.Runtime
 
             // Need to add the runtime directory to sys.path so that we
             // can find built-in assemblies like System.Data, et. al.
-            string rtdir = RuntimeEnvironment.GetRuntimeDirectory();
+            string rtdir = typeof(string).GetAssembly().Location;
             IntPtr path = Runtime.PySys_GetObject("path");
             IntPtr item = Runtime.PyString_FromString(rtdir);
             Runtime.PyList_Append(path, item);

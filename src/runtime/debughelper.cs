@@ -106,9 +106,9 @@ namespace Python.Runtime
 
         [Conditional("DEBUG")]
         internal static void debug(string msg)
-        {
-            StackTrace st = new StackTrace(1, true);
-            StackFrame sf = st.GetFrame(0);
+        {   
+            StackTrace st = new StackTrace(new Exception(msg), true);
+            StackFrame sf = st.GetFrames()[0];
             MethodBase mb = sf.GetMethod();
             Type mt = mb.DeclaringType;
             string caller = mt.Name + "." + sf.GetMethod().Name;

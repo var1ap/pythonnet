@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Reflection;
-using System.Security.Permissions;
 
 namespace Python.Runtime
 {

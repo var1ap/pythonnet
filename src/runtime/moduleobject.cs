@@ -3,7 +3,9 @@ using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 using System.Reflection;
+using ReflectionBridge.Extensions;
 
 namespace Python.Runtime
 {
@@ -113,7 +115,7 @@ namespace Python.Runtime
             type = AssemblyManager.LookupType(qname);
             if (type != null)
             {
-                if (!type.IsPublic)
+                if (!type.IsPublic())
                 {
                     return null;
                 }
@@ -139,7 +141,7 @@ namespace Python.Runtime
                 type = AssemblyManager.LookupType(qname);
                 if (type != null)
                 {
-                    if (!type.IsPublic)
+                    if (!type.IsPublic())
                     {
                         return null;
                     }
@@ -224,8 +226,8 @@ namespace Python.Runtime
                 for (int i = 0; i < methods.Length; i++)
                 {
                     MethodInfo method = methods[i];
-                    object[] attrs = method.GetCustomAttributes(funcmarker, false);
-                    object[] forbid = method.GetCustomAttributes(ftmarker, false);
+                    object[] attrs = method.GetCustomAttributes(funcmarker, false).ToArray();
+                    object[] forbid = method.GetCustomAttributes(ftmarker, false).ToArray();
                     bool allow_threads = (forbid.Length == 0);
                     if (attrs.Length > 0)
                     {
@@ -241,7 +243,7 @@ namespace Python.Runtime
                 for (int i = 0; i < properties.Length; i++)
                 {
                     PropertyInfo property = properties[i];
-                    object[] attrs = property.GetCustomAttributes(propmarker, false);
+                    object[] attrs = property.GetCustomAttributes(propmarker, false).ToArray();
                     if (attrs.Length > 0)
                     {
                         string name = property.Name;
@@ -249,7 +251,7 @@ namespace Python.Runtime
                         StoreAttribute(name, p);
                     }
                 }
-                type = type.BaseType;
+                type = type.BaseType();
             }
         }
 

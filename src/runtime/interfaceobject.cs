@@ -17,7 +17,7 @@ namespace Python.Runtime
         internal InterfaceObject(Type tp) : base(tp)
         {
             CoClassAttribute coclass = (CoClassAttribute)
-                Attribute.GetCustomAttribute(tp, cc_attr);
+                tp.GetTypeInfo().GetCustomAttribute(cc_attr);
             if (coclass != null)
             {
                 ctor = coclass.CoClass.GetConstructor(Type.EmptyTypes);

@@ -51,7 +51,7 @@ namespace Python.Runtime
             {
                 reg = new Hashtable();
             }
-            object key = (obj != null) ? obj : this.info.ReflectedType;
+            object key = (obj != null) ? obj : this.info.DeclaringType;
             ArrayList list = reg[key] as ArrayList;
             if (list == null)
             {
@@ -65,7 +65,7 @@ namespace Python.Runtime
 
             object[] args = { d };
             MethodInfo mi = this.info.GetAddMethod(true);
-            mi.Invoke(obj, BindingFlags.Default, null, args, null);
+            mi.Invoke(obj, args);
 
             return true;
         }
@@ -93,7 +93,7 @@ namespace Python.Runtime
                 return false;
             }
 
-            object key = (obj != null) ? obj : this.info.ReflectedType;
+            object key = (obj != null) ? obj : this.info.DeclaringType;
             ArrayList list = reg[key] as ArrayList;
 
             if (list == null)
@@ -117,7 +117,7 @@ namespace Python.Runtime
                 args[0] = item.del;
                 try
                 {
-                    mi.Invoke(obj, BindingFlags.Default, null, args, null);
+                    mi.Invoke(obj, args);
                 }
                 catch
                 {

@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using ReflectionBridge.Extensions;
 
 namespace Python.Runtime
 {
@@ -67,7 +68,7 @@ namespace Python.Runtime
             // they do from Python. If the ClassObject represents one of the
             // convertible primitive types, just convert the arg directly.
 
-            if (type.IsPrimitive || type == typeof(String))
+            if (type.IsPrimitive() || type == typeof(String))
             {
                 if (Runtime.PyTuple_Size(args) != 1)
                 {
@@ -88,7 +89,7 @@ namespace Python.Runtime
                 return CLRObject.GetInstHandle(result, tp);
             }
 
-            if (type.IsAbstract)
+            if (type.IsAbstract())
             {
                 Exceptions.SetError(Exceptions.TypeError,
                     "cannot instantiate abstract class"
@@ -96,7 +97,7 @@ namespace Python.Runtime
                 return IntPtr.Zero;
             }
 
-            if (type.IsEnum)
+            if (type.IsEnum())
             {
                 Exceptions.SetError(Exceptions.TypeError,
                     "cannot instantiate enumeration"

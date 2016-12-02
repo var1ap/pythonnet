@@ -13,7 +13,7 @@ namespace Python.Runtime
     // when moving to new Python versions.
     //=======================================================================
 
-    [Serializable()]
+    
     [AttributeUsage(AttributeTargets.All)]
     public class DocStringAttribute : Attribute
     {
@@ -31,7 +31,7 @@ namespace Python.Runtime
         private string docStr;
     }
 
-    [Serializable()]
+    
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Delegate)]
     internal class PythonMethodAttribute : Attribute
     {
@@ -40,7 +40,7 @@ namespace Python.Runtime
         }
     }
 
-    [Serializable()]
+   
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Delegate)]
     internal class ModuleFunctionAttribute : Attribute
     {
@@ -49,7 +49,7 @@ namespace Python.Runtime
         }
     }
 
-    [Serializable()]
+    
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Delegate)]
     internal class ForbidPythonThreadsAttribute : Attribute
     {
@@ -59,7 +59,7 @@ namespace Python.Runtime
     }
 
 
-    [Serializable()]
+    
     [AttributeUsage(AttributeTargets.Property)]
     internal class ModulePropertyAttribute : Attribute
     {
@@ -354,7 +354,7 @@ namespace Python.Runtime
             // Here we build a mapping of PyTypeObject slot names to the
             // appropriate prototype (delegate) type to use for the slot.
 
-            Type[] items = typeof(Interop).GetNestedTypes();
+            Type[] items = typeof(Interop).GetTypeInfo().GetNestedTypes();
             Hashtable p = new Hashtable();
 
             for (int i = 0; i < items.Length; i++)
@@ -467,7 +467,7 @@ namespace Python.Runtime
         {
             Type dt;
             if (funcType != null)
-                dt = typeof(Interop).GetNestedType(funcType) as Type;
+                dt = typeof(Interop).GetTypeInfo().GetNestedType(funcType) as Type;
             else
                 dt = GetPrototype(method.Name);
 

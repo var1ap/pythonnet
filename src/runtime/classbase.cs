@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using System.Security;
 using System.Runtime.InteropServices;
+using ReflectionBridge.Extensions;
 
 namespace Python.Runtime
 {
@@ -27,7 +28,7 @@ namespace Python.Runtime
 
         internal virtual bool CanSubclass()
         {
-            return (!this.type.IsEnum);
+            return (!this.type.IsEnum());
         }
 
         //====================================================================

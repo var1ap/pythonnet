@@ -150,7 +150,7 @@ namespace Python.Runtime
             int index = 0;
             object value;
 
-            if (items.IsReadOnly)
+            if (((IList)items).IsReadOnly)
             {
                 Exceptions.RaiseTypeError("array is read-only");
                 return -1;
