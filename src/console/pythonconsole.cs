@@ -1,6 +1,8 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.Loader;
 using Python.Runtime;
 
 namespace Python.Runtime
@@ -18,9 +20,27 @@ namespace Python.Runtime
             AssemblyLoader a = assemblyLoader;
 
             string[] cmd = Environment.GetCommandLineArgs();
-            PythonEngine.Initialize();
+            //PythonEngine.Initialize();
+        IntPtr gs;
 
+        PythonEngine.Initialize();
+            gs = PythonEngine.AcquireLock();
+
+            PyList list = new PyList();
+            list.Append(new PyString("foo"));
+            list.Append(new PyString("bar"));
+            list.Append(new PyString("baz"));
+            List<string> result = new List<string>();
+            foreach (PyObject item in list)
+                result.Add(item.ToString());
+            Debug.Assert(3 == result.Count);
+            Debug.Assert("foo" == result[0]);
+            Debug.Assert("bar" == result[1]);
+            Debug.Assert("baz" == result[2]);
+
+            PythonEngine.ReleaseLock(gs);
             int i = Runtime.Py_Main(cmd.Length, cmd);
+            //PythonEngine.Shutdown();
             PythonEngine.Shutdown();
 
             return i;
@@ -47,13 +67,11 @@ namespace Python.Runtime
                     }
 
                     // looks for the assembly from the resources and load it
-                    using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+                    using (var stream = Assembly.GetEntryAssembly().GetManifestResourceStream(resourceName))
                     {
                         if (stream != null)
                         {
-                            Byte[] assemblyData = new Byte[stream.Length];
-                            stream.Read(assemblyData, 0, assemblyData.Length);
-                            Assembly assembly = Assembly.Load(assemblyData);
+                            Assembly assembly = AssemblyLoadContext.Default.LoadFromStream(stream);
                             loadedAssemblies[resourceName] = assembly;
                             return assembly;
                         }

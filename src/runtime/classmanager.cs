@@ -356,7 +356,7 @@ namespace Python.Runtime
                         continue;
 
                     case MemberTypes.NestedType:
-                        tp = (Type)mi;
+                        tp = ((TypeInfo)mi).AsType();
                         if (!(tp.IsNestedPublic() || tp.GetTypeInfo().IsNestedFamily ||
                               tp.GetTypeInfo().IsNestedFamORAssem))
                             continue;

@@ -474,7 +474,7 @@ namespace Python.Runtime
             if (dt != null)
             {
                 IntPtr tmp = Marshal.AllocHGlobal(IntPtr.Size);
-                Delegate d = Delegate.CreateDelegate(dt, method);
+                Delegate d = DelegateShim.CreateDelegate(dt, method);
                 Thunk cb = new Thunk(d);
                 Marshal.StructureToPtr(cb, tmp, false);
                 IntPtr fp = Marshal.ReadIntPtr(tmp, 0);

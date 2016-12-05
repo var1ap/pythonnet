@@ -549,7 +549,7 @@ namespace Python.Runtime
                 {
                     assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(Guid.NewGuid().ToString()),
             AssemblyBuilderAccess.Run);
-                    domain.DefineDynamicAssembly(new AssemblyName(assemblyName),AssemblyBuilderAccess.Run);
+                    AssemblyBuilder.DefineDynamicAssembly(new AssemblyName(assemblyName),AssemblyBuilderAccess.Run);
 
                     assemblyBuilders[assemblyName] = assemblyBuilder;
                 }

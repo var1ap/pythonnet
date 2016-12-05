@@ -171,7 +171,7 @@ namespace Python.Runtime
             Type dispatcher = GetDispatcher(dtype);
             object[] args = { callable, dtype };
             object o = Activator.CreateInstance(dispatcher, args);
-            return Delegate.CreateDelegate(dtype, o, "Invoke");
+            return DelegateShim.CreateDelegate(dtype, o, "Invoke");
         }
     }
 

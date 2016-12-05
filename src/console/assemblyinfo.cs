@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using System.Security.Permissions;
 using System.Runtime.InteropServices;
 using System.Resources;
 
@@ -10,8 +9,8 @@ using System.Resources;
 [assembly: AssemblyDefaultAliasAttribute("python.exe")]
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
-[assembly: PermissionSetAttribute(SecurityAction.RequestMinimum,
-    Name = "FullTrust")]
+//[assembly: PermissionSetAttribute(SecurityAction.RequestMinimum,
+//    Name = "FullTrust")]
 //[assembly: AssemblyDescriptionAttribute("")]
 [assembly: AssemblyCopyrightAttribute("Zope Public License, Version 2.0 (ZPL)")]
 //[assembly: AssemblyFileVersionAttribute("2.0.0.4")]

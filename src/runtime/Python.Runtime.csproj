@@ -1,8 +1,8 @@
-﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
   <PropertyGroup>
-    <TargetFramework>netstandard1.6.1</TargetFramework>
-    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.6.1' ">$(PackageTargetFallback);dotnet5.4</PackageTargetFallback>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dotnet5.4;dnxcore50;net</PackageTargetFallback>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <PlatformTarget>x64</PlatformTarget>

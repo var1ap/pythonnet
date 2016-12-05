@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Reflection;
+using ReflectionBridge.Extensions;
 
 namespace Python.Runtime
 {
@@ -148,7 +149,7 @@ namespace Python.Runtime
                     IntPtr builtins = Runtime.PyEval_GetBuiltins();
                     Runtime.PyDict_SetItemString(module_globals, "__builtins__", builtins);
 
-                    var assembly = Assembly.GetEntryAssembly();
+                    var assembly = typeof(Runtime).GetAssembly();
                     using (Stream stream = assembly.GetManifestResourceStream("Python.Runtime.resources.clr.py"))
                     using (StreamReader reader = new StreamReader(stream))
                     {
