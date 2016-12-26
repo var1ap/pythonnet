@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4165C59D-2822-499F-A6DB-EACA4C331EB5}</ProjectGuid>
+    <RootNamespace>Python.EmbeddingTest</RootNamespace>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
+    <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>
+<!-- <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"> -->
+<!-- <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" /> -->
+<!-- <PropertyGroup> -->
+<!-- <TargetFramework>netstandard1.6</TargetFramework> -->
+<!-- <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dotnet5.4;dnxcore50;net</PackageTargetFallback> -->
+<!-- </PropertyGroup> -->
+<!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' "> -->
+<!-- <RuntimeIdentifier>win7-x64</RuntimeIdentifier> -->
+<!-- <PlatformTarget>x64</PlatformTarget> -->
+<!-- <DebugSymbols>true</DebugSymbols> -->
+<!-- <DebugType>full</DebugType> -->
+<!-- <Optimize>false</Optimize> -->
+<!-- <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants> -->
+<!-- <ErrorReport>prompt</ErrorReport> -->
+<!-- <WarningLevel>4</WarningLevel> -->
+<!-- </PropertyGroup> -->
+<!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' "> -->
+<!-- <RuntimeIdentifier>win7-x64</RuntimeIdentifier> -->
+<!-- <PlatformTarget>x64</PlatformTarget> -->
+<!-- <DebugType>pdbonly</DebugType> -->
+<!-- <Optimize>true</Optimize> -->
+<!-- <DefineConstants>$(DefineConstants);TRACE;RELEASE</DefineConstants> -->
+<!-- <ErrorReport>prompt</ErrorReport> -->
+<!-- <WarningLevel>4</WarningLevel> -->
+<!-- </PropertyGroup> -->
+<!-- <ItemGroup> -->
+<!-- <ProjectReference Include="..\runtime\Python.Runtime.csproj" /> -->
+<!-- </ItemGroup> -->
+<!-- <ItemGroup> -->
+<!-- <Compile Include="**\*.cs" /> -->
+<!-- <EmbeddedResource Include="**\*.resx" /> -->
+<!-- <EmbeddedResource Include="resources\**\*" /> -->
+<!-- </ItemGroup> -->
+<!-- <ItemGroup> -->
+<!-- <PackageReference Include="NUnit"> -->
+<!-- <Version>3.5.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="NETStandard.Library"> -->
+<!-- <Version>1.6.1</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="Microsoft.NET.Sdk"> -->
+<!-- <Version>1.0.0-alpha-20161104-2</Version> -->
+<!-- <PrivateAssets>All</PrivateAssets> -->
+<!-- </PackageReference> -->
+<!-- </ItemGroup> -->
+<!-- <ItemGroup Condition=" '$(TargetFramework)' == 'net451' "> -->
+<!-- <Reference Include="System" /> -->
+<!-- <Reference Include="Microsoft.CSharp" /> -->
+<!-- </ItemGroup> -->
+<!-- <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> -->
+<!-- </Project> -->

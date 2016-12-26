@@ -8,13 +8,6 @@ namespace Python.EmbeddingTest
     [TestFixture]
     public class PyIterTest
     {
-
-
-
-
-
-
-
         private IntPtr gs;
 
         [SetUp]

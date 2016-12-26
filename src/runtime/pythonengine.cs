@@ -150,7 +150,7 @@ namespace Python.Runtime
                     Runtime.PyDict_SetItemString(module_globals, "__builtins__", builtins);
 
                     var assembly = typeof(Runtime).GetAssembly();
-                    using (Stream stream = assembly.GetManifestResourceStream("Python.Runtime.resources.clr.py"))
+                    using (Stream stream = assembly.GetManifestResourceStream("runtime.resources.clr.py"))
                     using (StreamReader reader = new StreamReader(stream))
                     {
                         // add the contents of clr.py to the module
@@ -258,6 +258,7 @@ namespace Python.Runtime
         {
             if (initialized)
             {
+                Runtime.Py_Main(3, new[] { "some.exe", "-c", "exit" });
                 Runtime.Shutdown();
                 initialized = false;
             }

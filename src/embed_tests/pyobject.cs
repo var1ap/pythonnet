@@ -20,6 +20,7 @@ namespace Python.EmbeddingTest
         public void TearDown()
         {
             PythonEngine.ReleaseLock(gs);
+            //Runtime.Runtime.Py_Main(3, new[] { "some.exe", "-c", "exit" });
             PythonEngine.Shutdown();
         }
 

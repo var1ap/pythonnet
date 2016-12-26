@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{097B4AC0-74E9-4C58-BCF8-C69746EC8271}</ProjectGuid>
+    <RootNamespace>Puthon.Runtime</RootNamespace>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
+    <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>
+<!-- <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"> -->
+<!-- <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" /> -->
+<!-- <PropertyGroup> -->
+<!-- <TargetFramework>netstandard1.6</TargetFramework> -->
+<!-- <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netstandard1.6' ">$(PackageTargetFallback);dotnet5.4;dnxcore50;net</PackageTargetFallback> -->
+<!-- </PropertyGroup> -->
+<!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' "> -->
+<!-- <PlatformTarget>x64</PlatformTarget> -->
+<!-- <DefineConstants>$(DefineConstants);DEBUG;TRACE;UCS2;PYTHON35</DefineConstants> -->
+<!-- <DebugSymbols>true</DebugSymbols> -->
+<!-- <DebugType>full</DebugType> -->
+<!-- <Optimize>false</Optimize> -->
+<!-- <AllowUnsafeBlocks>true</AllowUnsafeBlocks> -->
+<!-- <ErrorReport>prompt</ErrorReport> -->
+<!-- <WarningLevel>4</WarningLevel> -->
+<!-- </PropertyGroup> -->
+<!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' "> -->
+<!-- <PlatformTarget>x64</PlatformTarget> -->
+<!-- <DefineConstants>$(DefineConstants);RELEASE;TRACE;UCS2;PYTHON35</DefineConstants> -->
+<!-- <DebugType>pdbonly</DebugType> -->
+<!-- <Optimize>true</Optimize> -->
+<!-- <AllowUnsafeBlocks>true</AllowUnsafeBlocks> -->
+<!-- <ErrorReport>prompt</ErrorReport> -->
+<!-- <WarningLevel>4</WarningLevel> -->
+<!-- </PropertyGroup> -->
+<!-- <ItemGroup> -->
+<!-- <Compile Include="**\*.cs" /> -->
+<!-- <EmbeddedResource Include="**\*.resx" /> -->
+<!-- <EmbeddedResource Include="resources\**\*" /> -->
+<!-- </ItemGroup> -->
+<!-- <ItemGroup> -->
+<!-- <PackageReference Include="Microsoft.NET.Sdk"> -->
+<!-- <Version>1.0.0-alpha-20161104-2</Version> -->
+<!-- <PrivateAssets>All</PrivateAssets> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="NETStandard.Library"> -->
+<!-- <Version>1.6.1</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="ReflectionBridge"> -->
+<!-- <Version>0.0.11</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.AppDomain"> -->
+<!-- <Version>2.0.11</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Collections.NonGeneric"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Collections.Specialized"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Data.Common"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Diagnostics.StackTrace"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Dynamic.Runtime"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Reflection.Emit"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Runtime.Loader"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- <PackageReference Include="System.Threading.Thread"> -->
+<!-- <Version>4.3.0</Version> -->
+<!-- </PackageReference> -->
+<!-- </ItemGroup> -->
+<!-- <Target Name="DisplayMessages" BeforeTargets="Clean;Build;Rebuild"> -->
+<!-- <Message Text="$(DefineConstants)" Importance="high" /> -->
+<!-- <Message Text="$(Configuration)|$(Platform)" Importance="high" /> -->
+<!-- </Target> -->
+<!-- <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" /> -->
+<!-- </Project> -->
